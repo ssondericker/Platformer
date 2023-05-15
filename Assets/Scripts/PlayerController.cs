@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public float movement_scalar;
     private Rigidbody2D rb;
+    public float max_horizontal_speed;
+    public float max_vertical_speed;
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +26,36 @@ public class PlayerController : MonoBehaviour
 
         // Add force to rigidbody
         rb.AddForce(movement_scalar * movement);
+
+        // Current velocity after force is added
+        Vector2 currentVelocity = rb.velocity;
+
+        // Check horizontal speed against max speed
+        if(currentVelocity.x > max_horizontal_speed)
+        {
+            // Update currentVelocity and assign it to rigidbody
+            currentVelocity = new Vector2(max_horizontal_speed, currentVelocity.y);
+            rb.velocity = currentVelocity;
+        }
+        else if(currentVelocity.x < -max_horizontal_speed)
+        {
+            // Update currentVelocity and assign it to rigidbody
+            currentVelocity = new Vector2(-max_horizontal_speed, currentVelocity.y);
+            rb.velocity = currentVelocity;
+        }
+
+        // Check vertical speed against max speed
+        if(currentVelocity.y > max_vertical_speed)
+        {
+            // Update currentVelocity and assign it to rigidbody
+            currentVelocity = new Vector2(currentVelocity.x, max_vertical_speed);
+            rb.velocity = currentVelocity;
+        }
+        else if (currentVelocity.y < -max_vertical_speed)
+        {
+            // Update currentVelocity and assign it to rigidbody
+            currentVelocity = new Vector2(currentVelocity.x, -max_vertical_speed);
+            rb.velocity = currentVelocity;
+        }
     }
 }
