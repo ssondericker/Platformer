@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float movement_scalar;
+    public float jump_scalar;
     private Rigidbody2D rb;
     public float max_horizontal_speed;
     public float max_vertical_speed;
@@ -27,35 +28,40 @@ public class PlayerController : MonoBehaviour
         // Add force to rigidbody
         rb.AddForce(movement_scalar * movement);
 
+        // Jumping 
+        if (Input.GetButton("Jump"))
+        {
+            Debug.Log("Jump");
+            Vector2 jump_force = new Vector2(0, jump_scalar);
+            rb.AddForce(jump_force, ForceMode2D.Impulse);
+        }
+
         // Current velocity after force is added
         Vector2 currentVelocity = rb.velocity;
 
         // Check horizontal speed against max speed
-        if(currentVelocity.x > max_horizontal_speed)
+        if (currentVelocity.x > max_horizontal_speed)
         {
             // Update currentVelocity and assign it to rigidbody
             currentVelocity = new Vector2(max_horizontal_speed, currentVelocity.y);
-            rb.velocity = currentVelocity;
         }
-        else if(currentVelocity.x < -max_horizontal_speed)
+        else if (currentVelocity.x < -max_horizontal_speed)
         {
             // Update currentVelocity and assign it to rigidbody
             currentVelocity = new Vector2(-max_horizontal_speed, currentVelocity.y);
-            rb.velocity = currentVelocity;
         }
 
         // Check vertical speed against max speed
-        if(currentVelocity.y > max_vertical_speed)
+        if (currentVelocity.y > max_vertical_speed)
         {
             // Update currentVelocity and assign it to rigidbody
             currentVelocity = new Vector2(currentVelocity.x, max_vertical_speed);
-            rb.velocity = currentVelocity;
         }
         else if (currentVelocity.y < -max_vertical_speed)
         {
             // Update currentVelocity and assign it to rigidbody
             currentVelocity = new Vector2(currentVelocity.x, -max_vertical_speed);
-            rb.velocity = currentVelocity;
         }
+        rb.velocity = currentVelocity;
     }
 }
