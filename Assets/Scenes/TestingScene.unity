@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 429310610}
   - component: {fileID: 429310609}
   - component: {fileID: 429310608}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 525437264}
   - component: {fileID: 525437263}
   - component: {fileID: 525437262}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 778360046}
   - component: {fileID: 778360045}
   - component: {fileID: 778360044}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,8 +599,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778360043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.01, y: -1.32, z: 0}
-  m_LocalScale: {x: 0.79367167, y: 2.3956866, z: 1}
+  m_LocalPosition: {x: 7.15, y: -0.17, z: 0}
+  m_LocalScale: {x: 3.65962, y: 2.3956866, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -634,10 +634,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576086289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.12, y: 2.51, z: 0}
-  m_LocalScale: {x: 0.31423044, y: 0.34400842, z: 0.04917593}
+  m_LocalPosition: {x: -0.7461, y: 1.5963, z: 0}
+  m_LocalScale: {x: 0.18391909, y: 0.20134814, z: 0.028782673}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1837010898}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -708,11 +709,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &1576086293
 CapsuleCollider2D:
@@ -743,6 +744,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement_scalar: 1000
-  jump_scalar: 25
-  max_horizontal_speed: 3
-  max_vertical_speed: 10
+  jump_scalar: 50
+  max_horizontal_speed: 1
+  max_vertical_speed: 20
+  groundCheck: {fileID: 1837010897}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!1 &1837010897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1837010898}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1837010898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837010897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -4.86, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1576086290}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

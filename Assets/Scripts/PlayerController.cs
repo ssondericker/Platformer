@@ -10,6 +10,14 @@ public class PlayerController : MonoBehaviour
     public float max_horizontal_speed;
     public float max_vertical_speed;
 
+    // Ground check variables
+    private bool isGrounded;
+    [SerializeField]
+    private GameObject groundCheck;
+    [SerializeField]
+    private LayerMask groundLayer;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +36,11 @@ public class PlayerController : MonoBehaviour
         // Add force to rigidbody
         rb.AddForce(movement_scalar * movement);
 
+        // Ground Check
+        isGrounded = Physics2D.OverlapCircle(groundCheck.transform.position, 0.02f, groundLayer);
+
         // Jumping 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump") && isGrounded)
         {
             Debug.Log("Jump");
             Vector2 jump_force = new Vector2(0, jump_scalar);
